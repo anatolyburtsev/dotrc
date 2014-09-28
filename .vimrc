@@ -6,11 +6,11 @@ syntax on
 set path=.,,**
 
 "время 
-fun! CurTime()
+function! CurTime()
   let ftime=""
   let ftime=ftime." ".strftime("%H:%M:%S")
   return ftime
-endf
+endfunction
 
 " size
 function! FileSize()
@@ -26,26 +26,27 @@ function! FileSize()
 endfunction
 
 "define 3 custom highlight groups
-hi User1 ctermbg=green ctermfg=red   guibg=green guifg=red
-hi User2 ctermbg=red   ctermfg=blue  guibg=red   guifg=blue
+hi User1 ctermbg=black  ctermfg=darkblue   guibg=green guifg=red
+hi User2 ctermbg=black  ctermfg=darkred  guibg=red   guifg=red
 hi User3 ctermbg=black  ctermfg=yellow guibg=blue  guifg=green
 
 "статусная строка внизу справа
 " Всегда показывать строку статуса
 set laststatus=2
 set noruler   
-"set statusline=%<%1*%f%h%m%r,%l,%c\ %P,%=\ %t,%{&ff},%2*%{&encoding}
-set statusline=%3*  "switch to User1 highlight
-"set statusline+=%t,        "tail of the filename
+" custom statusline
+set statusline=%3*              "switch to User3 highlight
 set statusline+=%-.100F,        "full path to filename
-"set stat sline+=%f,       "tail of the filename
-set statusline+=%m       "modified flag
-set statusline+=%r\        "read only flag
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+set statusline+=%m              "modified flag
+set statusline+=%r\             "read only flag
+set statusline+=%l/%L           "cursor line/total lines
+set statusline+=\ %P            "percent through file
 
-set statusline+=%=      "left/right separator
-set statusline+=%y,      "filetype
-set statusline+=%{FileSize()},      "filesize
-set statusline+=%{&encoding} 
+set statusline+=%=              "left/right separator
+set statusline+=%2*              "switch to User2 highlight
+set statusline+=%{CurTime()}\   "time
+set statusline+=%1*              "switch to User1 highlight
+set statusline+=%y,             "filetype
+set statusline+=%{FileSize()},  "filesize
+set statusline+=%{&encoding}    "current encoding
 
