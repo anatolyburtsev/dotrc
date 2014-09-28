@@ -2,9 +2,11 @@ set tabstop=4
 set shiftwidth=4 
 set expandtab
 syntax on
+let python_highlight_all = 1
+" быстрая помощь по данной питонячей функции по K в normal mode
+setlocal keywordprg=pydoc
 " искать в pwd+поддиректориях http://www.allaboutvim.ru/2012/03/path.html
 set path=.,,**
-
 "время 
 function! CurTime()
   let ftime=""
